@@ -69,19 +69,19 @@ static void sl_config_parse(int argc, char *argv[], sl_config *config)
                         break;
                 case 'h':
                         print_usage(argv[0]);
-                        exit(0);
+                        exit(EXIT_SUCCESS);
                 case 'V':
                         printf("sl %s\n", SL_VERSION);
-                        exit(0);
+                        exit(EXIT_SUCCESS);
                 default:
                         print_usage(argv[0]);
-                        exit(1);
+                        exit(EXIT_FAILURE);
                 }
         }
 
         if (config->c51 && config->logo) {
                 fprintf(stderr, "error: -c/--c51 conflicts with -l/--logo\n");
-                exit(1);
+                exit(EXIT_FAILURE);
         }
 }
 
@@ -551,7 +551,7 @@ int main(int argc, char *argv[])
         struct tui tui;
         if (!tui_init(&tui)) {
                 fprintf(stderr, "sl: not a tty, or terminal setup failed\n");
-                return 1;
+                return EXIT_FAILURE;
         }
 
         struct smoke_plume plume = smoke_plume_init();
@@ -563,5 +563,5 @@ int main(int argc, char *argv[])
         }
 
         term_shutdown();
-        return 0;
+        return EXIT_SUCCESS;
 }
