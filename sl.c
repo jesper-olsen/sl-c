@@ -86,8 +86,7 @@ static void sl_config_parse(int argc, char *argv[], sl_config *config)
 }
 
 // ---------------------------------------------------------------------
-// Frame data - byte-exact with the Rust source; see the ASCII art there
-// for what each locomotive actually looks like assembled.
+// Frame data 
 // ---------------------------------------------------------------------
 
 static constexpr int D51_HEIGHT = 10;
@@ -274,7 +273,6 @@ static const char *const WHEELS_ERASER =
 
 static constexpr int SMOKE_PATTERNS = 16;
 
-// Values fixed to match the Rust PuffKind enum's discriminants exactly:
 // SMOKE[] is indexed by kind, so PUFF_BLACK/PUFF_WHITE must stay 0/1.
 enum puff_kind {
         PUFF_BLACK = 0,
@@ -344,9 +342,7 @@ struct smoke_plume {
         return true;
 }
 
-// Pre-allocated, fixed capacity: no dynamic allocation at runtime, unlike
-// the Rust version's VecDeque::with_capacity(256). next_puff starts White
-// to match PuffKind's #[default] in the Rust source exactly.
+// Pre-allocated, fixed capacity
 [[nodiscard]] static struct smoke_plume smoke_plume_init(void)
 {
         return (struct smoke_plume) {
@@ -357,8 +353,7 @@ struct smoke_plume {
 }
 
 // Bounds-clipped text draw: skips text that's fully off-screen, clips text
-// that's partially off-screen at either horizontal edge. Mirrors
-// Tui::draw_text in the Rust version.
+// that's partially off-screen at either horizontal edge. 
 static void tui_draw_text(struct tui *t, int y, int x, const char *s)
 {
         int len = (int)strlen(s);

@@ -2,7 +2,7 @@
 
 A C23 port of Masashi Toyoda's classic [sl](https://github.com/mtoyoda/sl) command-line utility.
 
-This version removes the legacy `libcurses` dependency for a lighter footprint and introduces a new option (`-1`) to start the train at the bottom of the screen.
+This version removes the legacy `libcurses` dependency and introduces a new option (`-1`) to start the train at the bottom of the screen.
 
 ## Prerequisites
 
