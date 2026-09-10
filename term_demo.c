@@ -7,15 +7,6 @@
 #include <stdio.h>
 #include <time.h>
 
-static void sleep_ms(long ms)
-{
-        struct timespec ts = {
-                .tv_sec = ms / 1000,
-                .tv_nsec = (ms % 1000) * 1'000'000,
-        };
-        nanosleep(&ts, nullptr);
-}
-
 int main(void)
 {
         if (!term_init()) {
@@ -23,7 +14,7 @@ int main(void)
                 return 1;
         }
 
-        term_size_t size = term_get_size();
+        term_size size = term_get_size();
         int col = 1;
         int dir = 1;
 
@@ -33,7 +24,7 @@ int main(void)
                 printf("X");
                 term_reset_color();
                 term_flush();
-                sleep_ms(40);
+                term_sleep_ms(40);
 
                 term_move_cursor(size.rows / 2, col);
                 printf(" ");

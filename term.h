@@ -5,7 +5,7 @@
 typedef struct {
         int rows;
         int cols;
-} term_size_t;
+} term_size;
 
 // Enable raw mode, switch to the alternate screen buffer, hide the cursor,
 // and register exit/signal handlers so the terminal is always restored.
@@ -19,7 +19,7 @@ typedef struct {
 void term_shutdown(void);
 
 // Current terminal size. Falls back to 80x24 if the ioctl fails.
-[[nodiscard]] term_size_t term_get_size(void);
+[[nodiscard]] term_size term_get_size(void);
 
 void term_clear(void);
 void term_move_cursor(int row, int col);   // 1-based, top-left origin
@@ -33,5 +33,7 @@ void term_reset_color(void);
 // Non-blocking: returns the next pending byte from stdin, or 0 if none is
 // available. Used to let an animation exit early on any keypress.
 int term_poll_key(void);
+
+void term_sleep_ms(long ms);
 
 #endif // TERM_H

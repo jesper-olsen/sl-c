@@ -3,10 +3,9 @@ CFLAGS = -Wall -O3 -std=c23 -ffast-math -march=native -DNDEBUG
 #CFLAGS = -Wall -O0 -std=c23 -g -fsanitize=address -fsanitize=thread
 LDFLAGS = -lm
 
-TARGETS := term_demo
-
-SRC     := term.c term_demo.c
-HEADER  := term.h
+TERM_DEMO_SRC := term.c term_demo.c
+SL_SRC        := term.c sl.c
+HEADERS       := term.h
 
 ASTYLE_OPTS := --style=kr \
                --indent=spaces=8 \
@@ -17,13 +16,16 @@ ASTYLE_OPTS := --style=kr \
 
 .PHONY: all clean fmt
 
-all: $(TARGETS)
+all: term_demo sl
 
-$(TARGETS): $(SRC) $(HEADER)
-	$(CC) $(CFLAGS) -o $@ $(SRC) $(LDFLAGS)
+term_demo: $(TERM_DEMO_SRC) $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ $(TERM_DEMO_SRC) $(LDFLAGS)
+
+sl: $(SL_SRC) $(HEADERS)
+	$(CC) $(CFLAGS) -o $@ $(SL_SRC) $(LDFLAGS)
 
 clean:
-	rm -f $(TARGETS)
+	rm -f term_demo sl
 
 fmt:
-	astyle $(ASTYLE_OPTS) $(SRC) $(HEADER)
+	astyle $(ASTYLE_OPTS) $(TERM_DEMO_SRC) $(SL_SRC) $(HEADERS)

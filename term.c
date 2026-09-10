@@ -1,9 +1,7 @@
-// term.c - raw-mode ANSI terminal control for sl.
-//
-// Deliberately layered directly on termios + VT100/xterm escape sequences
-// rather than curses/notcurses: sl only ever blits a single string per
-// frame, so a library boundary buys nothing here, and this keeps the C
-// version philosophically aligned with the crossterm-based Rust port.
+// term.c - raw-mode ANSI terminal control directly layered on
+// on termios + VT100/xterm escape sequences.
+
+#define _POSIX_C_SOURCE 200809L
 
 #include "term.h"
 
@@ -12,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
+#include <time.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
 
@@ -98,15 +97,15 @@ static void term_install_handlers(void)
         return true;
 }
 
-[[nodiscard]] term_size_t term_get_size(void)
+[[nodiscard]] term_size term_get_size(void)
 {
         struct winsize ws;
         if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == -1 || ws.ws_col == 0) {
-                return (term_size_t) {
+                return (term_size) {
                         .rows = 24, .cols = 80
                 };
         }
-        return (term_size_t) {
+        return (term_size) {
                 .rows = ws.ws_row, .cols = ws.ws_col
         };
 }
@@ -151,4 +150,13 @@ int term_poll_key(void)
         unsigned char c;
         ssize_t n = read(STDIN_FILENO, &c, 1);
         return (n == 1) ? (int)c : 0;
+}
+
+void term_sleep_ms(long ms)
+{
+        struct timespec ts = {
+                .tv_sec = ms / 1000,
+                .tv_nsec = (ms % 1000) * 1'000'000,
+        };
+        nanosleep(&ts, nullptr);
 }
