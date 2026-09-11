@@ -56,7 +56,7 @@ Comparison of
 Two runs of each, measured with `/usr/bin/time -l` on a Macbook Air M5 (identical terminal window size):
 
 |                       | sl-c     | Toyoda's original | Rust port    |
-|---                    |---       |---                |---           |
+|---                    |---:      |---:               |---:          |
 | Executable size       | 35,536 B | 35,104 B          | 1,105,408 B  |
 | Peak RSS              | 1.31 MB  | 2.19 MB           | 1.89 MB      |
 | Peak memory footprint | 944 KB   | 1.75 MB           | 1.01 MB      |
