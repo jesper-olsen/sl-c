@@ -4,6 +4,7 @@ A C23 port of Masashi Toyoda's classic [sl](https://github.com/mtoyoda/sl) comma
 
 This version removes the legacy `libcurses` dependency and introduces a new option (`-1`) to start the train at the bottom of the screen.
 
+
 ## Prerequisites
 
 You will need the following installed:
@@ -43,6 +44,7 @@ Options:
 ```
 
 ![Gif animation of the sl command](demo.gif)
+
 
 ## Documentation
 
