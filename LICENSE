@@ -1,0 +1,43 @@
+This repository contains two things under two different licenses:
+
+1. The C23 rendering, terminal-handling, and build code, which is original
+   to this project.
+2. The train ASCII art and animation behaviour, ported from Masashi
+   Toyoda's original `sl` (https://github.com/mtoyoda/sl), by way of an
+   intermediate Rust port (https://github.com/jesper-olsen/sl) by the same
+   author as this repository.
+
+-------------------------------------------------------------------------
+Part 1: sl-c original code
+
+MIT License
+
+Copyright (c) 2026 Jesper Olsen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+-------------------------------------------------------------------------
+Part 2: Original sl - train art and behaviour
+
+Copyright 1993,1998,2014 Toyoda Masashi (mtoyoda@acm.org)
+
+Everyone is permitted to do anything on this program including copying,
+modifying, and improving, unless you try to pretend that you wrote it.
+i.e., the above copyright notice has to appear in all copies.
+THE AUTHOR DISCLAIMS ANY RESPONSIBILITY WITH REGARD TO THIS SOFTWARE.
